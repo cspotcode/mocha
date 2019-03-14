@@ -118,12 +118,16 @@ if (nodeArgs.gc) {
 
 debug('final node args', nodeArgs);
 
-const args = [].concat(
-  unparseNodeFlags(nodeArgs),
-  mochaPath,
-  '--preParsedJsonOptions',
-  JSON.stringify(mochaArgs)
-);
+const args = []
+  .concat(unparseNodeFlags(nodeArgs), mochaPath)
+  .concat(
+    process.platform === 'win32'
+      ? [
+          '--preParsedBase64JsonOptions',
+          Buffer.from(JSON.stringify(mochaArgs), 'utf8').toString('base64')
+        ]
+      : ['--preParsedJsonOptions', JSON.stringify(mochaArgs)]
+  );
 
 debug(`exec ${process.execPath} w/ args:`, args);
 
