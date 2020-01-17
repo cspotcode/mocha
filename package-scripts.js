@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const nps = require('nps-utils');
 
 /**
  * Generates a command to run mocha tests with or without test coverage
@@ -23,8 +24,25 @@ function test(testName, mochaParams) {
 module.exports = {
   scripts: {
     build: {
-      script: `browserify -e browser-entry.js --plugin ./scripts/dedefine --ignore './lib/cli/*.js' --ignore 'chokidar' --ignore 'fs' --ignore 'glob' --ignore 'path' --ignore 'supports-color' -o mocha.js`,
-      description: 'Build browser bundle'
+      default: {
+        script: 'nps build.tsc build.copy build.browserify',
+        description: 'Build'
+      },
+      tsc: {
+        script: 'tsc -p . || true',
+        description: 'Compile JS'
+      },
+      copy: {
+        script: nps.series(
+          `cpy '**/*.html' '../lib/' --cwd=src --parents`,
+          `cpy '**/*.json' '../lib/' --cwd=src --parents`
+        ),
+        description: 'Copy non-compiled assets from src to lib'
+      },
+      browserify: {
+        script: `browserify -e browser-entry.js --plugin ./scripts/dedefine --ignore './lib/cli/*.js' --ignore 'chokidar' --ignore 'fs' --ignore 'glob' --ignore 'path' --ignore 'supports-color' -o mocha.js`,
+        description: 'Build browser bundle'
+      }
     },
     lint: {
       default: {
@@ -53,14 +71,14 @@ module.exports = {
       },
       prettier: {
         script:
-          'prettier --write "!(package*).json" ".*.json" "lib/**/*.json" "*.yml"',
+          'prettier --write "!(package*).json" ".*.json" "src/**/*.json" "*.yml"',
         description: 'Format JSON & YAML files',
         hiddenFromHelp: true
       }
     },
     clean: {
-      script: 'rimraf mocha.js',
-      description: 'Clean browser bundle'
+      script: 'rimraf mocha.js lib',
+      description: 'Clean built artifacts'
     },
     test: {
       default: {

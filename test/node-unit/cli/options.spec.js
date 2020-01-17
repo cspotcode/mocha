@@ -5,7 +5,7 @@ const rewiremock = require('rewiremock/node');
 const {ONE_AND_DONE_ARGS} = require('../../../lib/cli/one-and-dones');
 
 const modulePath = require.resolve('../../../lib/cli/options');
-const mocharcPath = require.resolve('../../../lib/mocharc.json');
+const mocharcPath = require.resolve('../../../lib/mocharc');
 const configPath = require.resolve('../../../lib/cli/config');
 
 const proxyLoadOptions = ({

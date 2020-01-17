@@ -605,6 +605,7 @@
     "markdown-toc": "^1.2.0",
     "markdownlint-cli": "^0.14.1",
     "nps": "^5.9.5",
+    "nps-utils": "^1.7.0",
     "nyc": "^14.1.1",
     "prettier": "^1.17.1",
     "remark": "^10.0.1",
