@@ -3,7 +3,7 @@ docs/_site
 docs/_dist
 mocha.js
 .karma/
-!lib/mocha.js
+lib
 
 #########################################
 # NON-MOCHA STUFF GOES BELOW THIS THING #
