@@ -8,6 +8,11 @@
     "declaration": true,
     "sourceMap": true,
     "declarationMap": true,
-    "newLine": "lf"
+    "newLine": "lf",
+
+    "target": "ES5",
+    "module": "CommonJS",
+
+    "resolveJsonModule": true
   }
 }
