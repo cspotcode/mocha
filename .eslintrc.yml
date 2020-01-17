@@ -23,11 +23,11 @@ overrides:
       - .wallaby.js
       - .eleventy.js
       - bin/*
-      - lib/cli/**/*.js
+      - src/cli/**/*.js
       - test/node-unit/**/*.js
       - test/integration/options/watch.spec.js
       - test/integration/helpers.js
-      - lib/growl.js
+      - src/growl.js
     parserOptions:
       ecmaVersion: 2017
     env:
@@ -41,7 +41,7 @@ overrides:
       expect: no
   - files:
       - bin/*
-      - lib/**/*.js
+      - src/**/*.js
     rules:
       no-restricted-globals:
         - error
@@ -81,7 +81,7 @@ overrides:
       sourceType: module
 
   - files:
-      - lib/reporters/*.js
+      - src/reporters/*.js
     rules:
       no-restricted-syntax:
         - error

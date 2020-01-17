@@ -3,6 +3,7 @@ mocha.js
 *.fixture.js
 docs/
 out/
-!lib/mocha.js
+lib/
+!src/mocha.js
 test/integration/fixtures
 !.*.js
